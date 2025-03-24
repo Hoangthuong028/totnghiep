@@ -26,7 +26,6 @@
         h1 {
             font-family: 'Be Vietnam Pro', sans-serif;
             color: #000000;
-            text-shadow: none;
         }
         .details {
             font-size: 18px;
@@ -50,8 +49,6 @@
             background-color: #0056b3;
             transform: scale(1.1);
         }
-
-        /* 🎈 Hiệu ứng icon pop-up */
         .popup-icon {
             position: fixed;
             font-size: 30px;
@@ -59,7 +56,6 @@
             opacity: 1;
             animation: popup 2.5s linear forwards;
         }
-
         @keyframes popup {
             0% { transform: translateY(0) scale(0.8); opacity: 1; }
             100% { transform: translateY(-100vh) scale(1.2); opacity: 0; }
@@ -67,7 +63,8 @@
     </style>
     <script>
         function confirmAttendance() {
-            alert("🎉 Chúc mừng! Bạn đã xác nhận tham gia lễ tốt nghiệp! 🎓");
+            document.getElementById("invite").style.display = "none";
+            document.getElementById("confirmation").style.display = "block";
         }
 
         function createPopupIcons() {
@@ -76,12 +73,12 @@
                 let icon = document.createElement("div");
                 icon.className = "popup-icon";
                 icon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-                icon.style.left = Math.random() * 90 + "vw";  // Xuất hiện ngẫu nhiên trên trang
+                icon.style.left = Math.random() * 90 + "vw";
                 icon.style.bottom = "0";
                 icon.style.position = "fixed";
                 icon.style.zIndex = "9999";
                 document.body.appendChild(icon);
-                setTimeout(() => icon.remove(), 2500); // Xóa sau 2.5s
+                setTimeout(() => icon.remove(), 2500);
             }, 700);
         }
 
@@ -112,7 +109,13 @@
         <p class="details">🎊 Trân trọng kính mời <strong id="guestName"></strong> đến tham dự lễ tốt nghiệp đầy ý nghĩa của Nguyễn Trần Kim Ngân! 🎊</p>
         <p class="details"><strong>📅 Thời gian:</strong> 13:30 PM, ngày 28 tháng 3 năm 2025</p>
         <p class="details"><strong>📍 Địa điểm:</strong> The ADORA Center, 431 Đ. Hoàng Văn Thụ, Phường 4, Tân Bình, Hồ Chí Minh</p>
-        <a href="#" class="btn" onclick="confirmAttendance()">💌 Xác nhận tham gia 💌</a>
+        <button class="btn" onclick="confirmAttendance()">💌 Xác nhận tham gia 💌</button>
+    </div>
+
+    <div class="container" id="confirmation" style="display: none;">
+        <h1>🎉 Chúc mừng! Bạn đã xác nhận tham gia! 🎓</h1>
+        <p class="details">Cảm ơn bạn đã xác nhận. Hẹn gặp bạn vào ngày 28/3/2025! 🎊</p>
+        <button class="btn" onclick="location.reload()">⬅️ Quay lại trang chủ</button>
     </div>
 </body>
 </html>
